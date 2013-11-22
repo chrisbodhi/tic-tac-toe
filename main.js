@@ -48,7 +48,7 @@ $(document).on('click', '#board .space', function (e) {
 
   // Marks the space with the current player's name
   // DONE: Don't mark it unless the space is blank
-  if (spaces[spaceNum]) // != 'veggies' && spaces[spaceNum] != 'junkfood')
+  if (spaces[spaceNum])
   // Adds a class to elem so css can take care of the visuals 
     { alert("D'oh! " + "Space #" + (spaceNum + 1) + " is taken.");
   } else {
