@@ -36,9 +36,9 @@ var checkForWinner = function () {
     // DONE: Check for rest of game winning cases
   )
   {
-    // console.log('somebody won');
     // DONE: Trigger 'game-win' event with the winning player as the event data
     $(document).trigger('game-win', currentPlayer);
+
   }
 };
 
@@ -47,10 +47,14 @@ $(document).on('click', '#board .space', function (e) {
   console.log('You clicked on space #' + spaceNum);
 
   // Marks the space with the current player's name
-  // TODO: Don't mark it unless the space is blank
+  // DONE: Don't mark it unless the space is blank
+  if (spaces[spaceNum] != 'veggies' && spaces[spaceNum] != 'junkfood')
+  // Adds a class to elem so css can take care of the visuals 
+    { $('#board .space:eq(' + spaceNum + ')').addClass(currentPlayer);
+  } else {
+    alert("D'oh! " + "Space #" + (spaceNum + 1) + " is taken.");
+  }
   spaces[spaceNum] = currentPlayer;
-  // Adds a class to elem so css can take care of the visuals
-  $('#board .space:eq(' + spaceNum + ')').addClass(currentPlayer);
 
   checkForWinner();
   setNextTurn();
@@ -59,6 +63,8 @@ $(document).on('click', '#board .space', function (e) {
 $(document).on('game-win', function (e, winner) {
   // DONE: Add alert for when the winner wins
   alert(winner + " has won!");
+  // DONE: Ensure game cannot continue after win
+  $(document).off("click");
 });
 
 // Start the game
